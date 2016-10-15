@@ -11,6 +11,7 @@
     <TextView android:text="@string/txt_latitude" />
 
     <EditText
+        android:id="@+id/edit_text_latitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_default_latitude"
@@ -19,6 +20,7 @@
     <TextView android:text="@string/txt_longitude" />
 
     <EditText
+        android:id="@+id/edit_text_longitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_default_longitude"
@@ -26,10 +28,12 @@
 
     <Button
         android:text="@string/btn_back"
-        android:textAllCaps="true" />
+        android:textAllCaps="true"
+        android:onClick="closeActivity"/>
 
     <Button
         android:text="@string/btn_set"
-        android:textAllCaps="true" />
+        android:textAllCaps="true"
+        android:onClick="setLatitudeAndLongitude"/>
 
 </GridLayout>
