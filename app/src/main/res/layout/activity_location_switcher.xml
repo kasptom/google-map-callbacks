@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="2"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:rowCount="2">
+
+    <TextView android:text="@string/txt_latitude" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_default_latitude"
+        android:inputType="numberDecimal"/>
+
+    <TextView android:text="@string/txt_longitude" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_default_longitude"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:text="@string/btn_back"
+        android:textAllCaps="true" />
+
+    <Button
+        android:text="@string/btn_set"
+        android:textAllCaps="true" />
+
+</GridLayout>
