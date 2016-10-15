@@ -33,5 +33,7 @@ public class MainMapActivity extends AppCompatActivity implements OnMapReadyCall
         map = googleMap;
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(krakow, 13.0f));
         Timber.d("onMapReady");
+
+        map.setOnMapLoadedCallback(() -> Timber.d("onMapLoadedCallback"));
     }
 }
