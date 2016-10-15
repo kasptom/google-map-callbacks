@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.LatLng;
 import timber.log.Timber;
 
 
-public class MainMapActivity extends AppCompatActivity implements OnMapReadyCallback
+public class MainMapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.CancelableCallback
 {
     public static final int LAT_LONG_REQUEST_CODE = 1234;
     GoogleMap map;
@@ -36,6 +36,23 @@ public class MainMapActivity extends AppCompatActivity implements OnMapReadyCall
         map = googleMap;
         LatLng krakow = new LatLng(50.06465, 19.94497);
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(krakow, 13.0f));
+
+        setCallbacks(map);
+    }
+
+    private void setCallbacks(GoogleMap map)
+    {
+        if (map == null)
+        {
+            Timber.d("Map is null. No callbacks set");
+            return;
+        }
+        map.setOnCameraMoveStartedListener(
+                value -> map.setOnMapLoadedCallback(
+                        () -> Timber.d("Callback after move")
+                )
+        );
+        map.setOnMapLoadedCallback(() -> Timber.d("onMapLoadedCallback that has to be done"));
     }
 
     @Override
@@ -58,4 +75,19 @@ public class MainMapActivity extends AppCompatActivity implements OnMapReadyCall
         Intent intent = new Intent(this, LocationSwitcherActivity.class);
         startActivityForResult(intent, LAT_LONG_REQUEST_CODE);
     }
+
+
+    //CancellableCallback implementation
+    @Override
+    public void onFinish()
+    {
+        Timber.d("onFinish");
+    }
+
+    @Override
+    public void onCancel()
+    {
+        Timber.d("onCancel");
+    }
+    //end of interface implementation
 }
