@@ -24,7 +24,6 @@ public class MainMapActivity extends AppCompatActivity implements OnMapReadyCall
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_map);
 
-
         SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_fragment);
         supportMapFragment.getMapAsync(this);
     }
@@ -48,11 +47,35 @@ public class MainMapActivity extends AppCompatActivity implements OnMapReadyCall
             return;
         }
         map.setOnCameraMoveStartedListener(
-                value -> map.setOnMapLoadedCallback(
-                        () -> Timber.d("Callback after move")
-                )
+
+                movementReason -> {
+                    Timber.d("Camera move detected");
+                    logMovementReason(movementReason);
+                    map.setOnMapLoadedCallback(
+                            () -> Timber.d("Map loaded callback after move"));
+
+                }
         );
         map.setOnMapLoadedCallback(() -> Timber.d("onMapLoadedCallback that has to be done"));
+    }
+
+    private void logMovementReason(int movementReason)
+    {
+        String reason = "unknown";
+        if (movementReason == GoogleMap.OnCameraMoveStartedListener.REASON_API_ANIMATION)
+        {
+            reason = "animation";
+        }
+        else if (movementReason == GoogleMap.OnCameraMoveStartedListener.REASON_DEVELOPER_ANIMATION)
+        {
+            reason = "developer animation";
+        }
+        else if (movementReason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE)
+        {
+            reason = "gesture";
+        }
+
+        Timber.d("Movement reason: %s", reason);
     }
 
     @Override
