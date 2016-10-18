@@ -112,5 +112,10 @@ public class MainMapActivity extends AppCompatActivity implements OnMapReadyCall
     {
         Timber.d("onCancel");
     }
+
+    public void setOnMapLoadedCallback(View view)
+    {
+        map.setOnMapLoadedCallback(() -> Timber.d("callback set with the button"));
+    }
     //end of interface implementation
 }

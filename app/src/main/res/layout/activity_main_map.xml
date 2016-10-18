@@ -10,12 +10,19 @@
         class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <Button
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_change_location"
-        android:onClick="openLocationSwitcherActivity"/>
+        android:layout_width="wrap_content"
+        android:onClick="openLocationSwitcherActivity"
+        android:text="@string/btn_change_location" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="set callback"
+        android:textAllCaps="true"
+        android:onClick="setOnMapLoadedCallback"/>
 
 </LinearLayout>
